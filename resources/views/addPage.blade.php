@@ -23,10 +23,10 @@
                     <h1>Add new Project</h1>
                 </div>
                 <div class="block-body">
-                    <form action="add" method="post" class="authorize-form">
+                    <form action="{{route('add')}}" method="post" class="authorize-form" enctype="multipart/form-data">
                         @csrf
                         <label for="shortDescription">Enter project description</label>
-                        <input type="text" id="description" placeholder="shortDescription" name="shortDescription">
+                        <input type="text" id="shortDescription" placeholder="shortDescription" name="shortDescription">
                         <br>
                         <label for="address">Enter project address</label>
                         <input type="text" id="address" placeholder="address" name="location">
@@ -35,7 +35,7 @@
                         <input type="text" id="author" placeholder="author" name="author">
                         <br>
                         <label for="image_src">Enter image's src</label>
-                        <input type="text" id="image_src" placeholder="image.png" name="image_src">
+                        <input type="file" id="image_src" placeholder="image.png" name="image_src">
                         <br>
                         <input type="submit" value="Enter" class="authorize-button">
                     </form>

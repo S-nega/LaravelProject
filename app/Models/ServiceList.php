@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceList extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'cost'
+    ];
 }

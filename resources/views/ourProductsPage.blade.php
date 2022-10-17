@@ -25,33 +25,30 @@
             <div class="main-block">
                 <div class="block-header">
                     <h1>Our Products</h1>
-                    <div class="buttons-for-admin">
-                        <a href="/addPage">Add new project</a>
-                    </div>
+                    @if(\Illuminate\Support\Facades\Auth::user())
+                        <div class="buttons-for-admin">
+                            <a href="/addPage">Add new project</a>
+                        </div>
+                    @endif
                 </div>
                 <div class="block-body">
                     @foreach($projects as $project)
                         <div class="project-block">
-                            <a href="#">
-<<<<<<< HEAD
-{{--                                                                            /${project_url}--}}
-=======
-                                {{--                                            /${project_url}--}}
->>>>>>> d4f1791549ec051ba70b7d191757df92f082298a
+                            <a href="{{route('projectP', ['project' => $project])}}">
                                 <div class="project_info-block">
-                                    <img src="C:/Users/Snega/design/resources/css/{{$project->image_src}}">
+                                    <img src="storage/{{$project->image_src}}">
                                     <h2>{{$project->location}}</h2>
                                     <p>{{$project->shortDescription}}</p>
                                 </div>
                             </a>
                             <div class="buttons-for-admin">
-<<<<<<< HEAD
-{{--                                <a href="/editPage/{{$project}}">Edit Project</a>--}}
-                                <a href="{{route('editP', ['project' => $project])}}">Edit Project</a>
-=======
-                                <a href="/editPage/{{$project->id}}">Edit Project</a>
->>>>>>> d4f1791549ec051ba70b7d191757df92f082298a
-                                <a href="/delete/{{$project->id}}">Delete Project</a>
+                                @if(\Illuminate\Support\Facades\Auth::user())
+                                    <a href="{{route('editP', ['project' => $project->id])}}">Edit Project</a>
+                                    <a href="/delete/{{$project->id}}">Delete Project</a>
+                                @else
+                                    <a href="{{route('callbackP', ['project' => $project->id, 'service' => 0])}}">I want such project</a>
+{{--                                    создать страницу orderProjectP--}}
+                                @endif
                             </div>
                         </div>
                     @endforeach

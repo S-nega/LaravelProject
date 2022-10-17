@@ -112,9 +112,6 @@ body {
 h1{
     text-align: center;
 }
-/*form{*/
-/*    text-align: center;*/
-/*}*/
 .authorize-form{
     margin-left: auto;
     margin-right: auto;
@@ -126,7 +123,6 @@ h1{
 .authorize-form label{
     width: 250px;
     line-height: 20px;
-    /*text-align: right;*/
 }
 .authorize-form input{
     width: 250px;
@@ -158,37 +154,82 @@ h1{
     flex-wrap: wrap;
     justify-content: space-around;
 }
-/*=======*/
-.buttons-for-admin{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: right;
-    align-content: end;
-}
 .buttons-for-admin>a{
     background-color: #ececec;
     color: #333;
     line-height: 20px;
     border-radius: 10px;
     padding: 5px;
-    /*margin-left: auto;*/
 }
 
 .block-body{
     display: flex;
     flex-wrap: wrap;
-    /*justify-content: left;*/
-    /*justify-content: space-between;*/
+    text-decoration: none;
 }
+.block-body>img{
+    width: 100%;
+}
+.block-body ul{
+    list-style: none;
+}
+
 .project-block{
     width: 31%;
-    justify-content: space-between;
-}
-.project-block{
-    width: 30%;
     text-align: center;
     margin: 10px;
-    /*justify-content: center;*/
+    justify-content: space-around;
+}
+.project_info-block > img{
+    width: 100%;
+}
+.project_info-block > h2{
+    margin: -63px auto 0 auto;
+    /*margin-top: -30%;*/
+    color: #fff;
+}
+.project_info-block p{
+    margin: 0 auto 0 auto;
+    background-color: rgba(255, 255, 255, 0.39);
 }
 
+.image-list-block{
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.image-list-block img{
+    width: 80%;
+    margin: auto;
+}
 
+.moving-block{
+    flex-wrap: nowrap;
+    display: inline-block;
+}
+
+.question-block{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.question-block p{
+    margin: 0;
+}
+
+.contacts{
+    text-align: center;
+
+}
+.tapLinks{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+    padding: 0px;
+}

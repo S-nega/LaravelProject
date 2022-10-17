@@ -15,8 +15,9 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('alt');
-            $table->string("url");
+//            $table->string('alt');
+//            $table->string("url");
+            $table->string('image_src');
 
             //$table->integer('projectId');//связать с таблицей проекты
             $table->foreignId("project_id")->constrained("projects")->onUpdate("CASCADE")->onDelete("CASCADE");

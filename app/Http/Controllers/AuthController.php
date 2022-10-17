@@ -6,6 +6,7 @@ use App\Http\Requests\Auth\authorizeRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Design;
 use App\Models\User;
+use App\Models\VeriftCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -31,21 +32,25 @@ class AuthController extends Controller
     }
 
     public function create(RegisterRequest $request){
-        if($request->password == $request->confirm_password) {
+//        $verifyCode = VeriftCode::find($request->verifyCode);
+//        if (VeriftCode::find($request->verifyCode)) {
+            if ($request->password == $request->confirm_password) {
+                User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'verifyCode' => $request->verifyCode,
+                    'status' => 'admin'
+                ]);
 
-            User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'verifyCode' => $request->verifyCode,
-                'status' => 'admin'
-            ]);
-
-            return redirect()->route('authorizeP')->with('status', 'Registration success!');
-        }
-        return redirect()->route('registrationP')->with('status', 'Password not equal');
-        //return view('registrationPage')->with('status', 'Password not equal');
+                return redirect()->route('authorizeP')->with('status', 'Registration success!');
+            }
+            return redirect()->route('registrationP')->with('status', 'Password not equal');
+            //return view('registrationPage')->with('status', 'Password not equal');
+//        }
+//        return redirect()->route('registrationP')->with('status', 'VerifyCode not equal');
     }
+
     public function logout(){
         Auth::logout();
         return redirect()->route('design-page')->with('status','Log Out success!');//->route('/design-page')

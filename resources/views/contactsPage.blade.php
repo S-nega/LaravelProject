@@ -23,6 +23,32 @@
         <div class="container">
             @include('menu')
             <h1>Contacts</h1>
+            <div class="contacts">
+                Address
+                <br>
+                г. Алматы, ул. Тимирязева, 42к23а
+                <br>
+                Phones
+                <br>
+                +7 (707) 133 99 82
+                <br>
+                <br>
+                TapLinks
+            </div>
+            <div class="tapLinks">
+                <ul class="tapLinks">
+                    <li>
+                        <a href="https://www.instagram.com/aestetika.kz/">
+                            <img src="storage/inst.png" alt="inst" width="30px">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://api.whatsapp.com/send/?phone=77071339982&text=Здравствуйте%21%0A%0AПишу+с+сайта+AESTETIKA.%0A%0A&type=phone_number&app_absent=0">
+                            <img src="storage/wa.png" alt="wa" width="30px">
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </body>
 </html>

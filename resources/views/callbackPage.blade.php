@@ -19,22 +19,25 @@
             @include('menu')
             <div class="authorization-form">
                 <h1>Please leave some information to manager could contact to you</h1>
-                <form action="#" class="authorize-form">
+                <form action="{{route('addCallback')}}" method="post" class="authorize-form">
                     @csrf
-                    <label for="email">Enter your name</label>
-                    <input type="text" id="name" placeholder="name">
+                    <label for="name">Enter your name</label>
+                    <input type="text" id="name" placeholder="name" name="name">
                     <br>
 
-                    <label for="pass">Enter your Surname</label>
-                    <input type="text" id="surname" placeholder="surname">
+                    <label for="surname">Enter your Surname</label>
+                    <input type="text" id="surname" placeholder="surname" name="surname">
                     <br>
-                    <label for="pass">Enter your phone number</label>
-                    <input type="number" id="phone" placeholder="8 777 000 00 00">
+                    <label for="phone">Enter your phone number</label>
+                    <input type="number" id="phone" placeholder="8 777 000 00 00" name="phone">
 
                     <br>
-                    <label for="pass">Add some information about your flat or house</label>
-                    <textarea id="description" placeholder="Address, square, style, etc"></textarea>
+                    <label for="description">Add some information about your flat or house</label>
+                    <textarea id="description" placeholder="Address, square, style, etc" name="description"></textarea>
                     <br>
+                        <input type="text" value="{{$project->id}}" name="project_id" style="visibility: hidden">
+                        <input type="text" value="{{$service->id}}" name="service_id" style="visibility: hidden">
+
                     <input type="submit" value="Submit your application" class="authorize-button">
                 </form>
             </div>

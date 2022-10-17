@@ -14,11 +14,21 @@
                 <li class="menu-element">
                     <a href="/contacts">Contacts</a>
                 </li>
+                @if(\Illuminate\Support\Facades\Auth::user())
+                    <li class="menu-element">
+                        <a href="/questionListP">Question List</a>
+                    </li>
+                @else
+                    <li class="menu-element">
+                        <a href="/callbackP">I want you to call me back</a>
+                    </li>
+{{--                    <li class="menu-element">--}}
+{{--                        <a href="/fillQuestionFormP">I want to fill question-list</a>--}}
+{{--                    </li>--}}
+                @endif
             </ul>
         </li>
-        <li class="menu-element">
-            <a href="/callback">I want you to call me back</a>
-        </li>
+
         <li class="menu-element">
             @if(\Illuminate\Support\Facades\Auth::user())
                 {{\Illuminate\Support\Facades\Auth::user()->email}}

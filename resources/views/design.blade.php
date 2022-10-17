@@ -23,8 +23,21 @@
                 <h1>Welcome to Interior Design Studio!</h1>
             </div>
             <div class="block-body">
-            Some information about company
-
+                Реализуемые дизайн-проекты
+                <br>
+                Economy, Premium, Luxury класса
+                <br>
+                Алматы
+                <div class="moving-block">
+                    @foreach($images as $image)
+                        <div class="image-list-block">
+                            <a href="{{route('projectP', ['project' => $image->project_id])}}">
+                                <img src="storage/{{$image->image_src}}" >
+                                <p>View about this project more</p>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

@@ -15,10 +15,12 @@ class CreateCallBackListsTable extends Migration
     {
         Schema::create('call_back_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('userName');
-            $table->string('userSurname');
-            $table->string('phoneNumber');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('phone');
             $table->string('description');
+            $table->foreignId('project_id');
+            $table->foreignId('service_id');
             $table->timestamps();
         });
     }

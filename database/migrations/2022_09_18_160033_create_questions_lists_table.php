@@ -15,14 +15,8 @@ class CreateQuestionsListsTable extends Migration
     {
         Schema::create('questions_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('surname');
-            $table->string('phoneNumber');
-            $table->double('square');
-            $table->foreignId('ServiceList_id');//выбранный пакет услуг
-            $table->string('designStyle');
-            $table->date('dateOfStarting');
-            $table->string('wishes');
+            $table->string('description');
+            $table->string('answer');
             $table->timestamps();
         });
     }
