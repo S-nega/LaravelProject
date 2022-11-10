@@ -14,20 +14,19 @@ use App\Models\User;
 use App\Services\DesignService;
 use Illuminate\Http\Request;
 
-class DesignController extends Controller
+class CallBackListController extends Controller
 {
-    public function __construct(DesignService $designService){
-        $this->designService = $designService;
+    public function __construct(CallBackListService $callBackListService){
+        $this->callBackListService = $callBackListService;
     }
 
-
-    public function all(){
+    public function callBackList(){
         try {
-            $projects = $this->designService->getAll();
+            $callBackList = $this->callBackListService->callBackList();
 
             return response()->json([
                 'status' => true,
-                'projects' => $projects
+                'callBackList' => $callBackList
             ],200);
 
         }catch (\Exception $e){
@@ -37,29 +36,12 @@ class DesignController extends Controller
             ]);
         }
     }
-
-    public function addProject(AddRequest $request){
+    public function addCallBackList(Request $request){
         try {
-            $project = $this->designService->addProject($request);
+            $callBackList = $this->callBackListService->addCallBackList($request);
             return response()->json([
                 'status' => true,
-                'project' => $project
-            ],200);
-//            return redirect()->route('ourProductsP')->with('status', 'Project added!');
-        }catch (\Exception $e){
-            return response()->json([
-                'status' => false,
-                'message' => $e->getMessage()
-            ]);
-        }
-    }
-
-    public function editProject(Projects $projects, Request $request){
-        try {
-            $project = $this->designService->editProject($projects, $request);
-            return response()->json([
-                'status' => true,
-                'project' => $project
+                'callBackList' => $callBackList
             ],200);
         }catch (\Exception $e){
             return response()->json([
@@ -68,14 +50,27 @@ class DesignController extends Controller
             ]);
         }
     }
-
-    public function deleteProject(Request $request){
+    public function editCallBackList(CallBackList $callBackList, Request $request){
+        try {
+            $callBackList = $this->callBackListService->editCallBackList($callBackList, $request);
+            return response()->json([
+                'status' => true,
+                'CallBackList' => $callBackList
+            ],200);
+        }catch (\Exception $e){
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    public function deleteCallBackList(Request $request){
         try {
             $id = $request->id;
-            $project = $this->designService->deleteProject($id);
+            $callBackList = $this->callBackListService->deleteCallBackList($id);
             return response()->json([
                 'status' => true,
-                'project' => $project
+                'callBackList' => $callBackList
             ],200);
         }catch (\Exception $e){
             return response()->json([

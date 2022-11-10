@@ -14,20 +14,19 @@ use App\Models\User;
 use App\Services\DesignService;
 use Illuminate\Http\Request;
 
-class DesignController extends Controller
+class ServiceListController extends Controller
 {
-    public function __construct(DesignService $designService){
-        $this->designService = $designService;
+    public function __construct(ServiceListService $serviceListService){
+        $this->serviceListService = $serviceListService;
     }
 
-
-    public function all(){
+    public function serviceList(){
         try {
-            $projects = $this->designService->getAll();
+            $serviceList = $this->serviceListService->serviceList();
 
             return response()->json([
                 'status' => true,
-                'projects' => $projects
+                'serviceList' => $serviceList
             ],200);
 
         }catch (\Exception $e){
@@ -37,29 +36,12 @@ class DesignController extends Controller
             ]);
         }
     }
-
-    public function addProject(AddRequest $request){
+    public function addServiceList(Request $request){
         try {
-            $project = $this->designService->addProject($request);
+            $serviceList = $this->serviceListService->addServiceList($request);
             return response()->json([
                 'status' => true,
-                'project' => $project
-            ],200);
-//            return redirect()->route('ourProductsP')->with('status', 'Project added!');
-        }catch (\Exception $e){
-            return response()->json([
-                'status' => false,
-                'message' => $e->getMessage()
-            ]);
-        }
-    }
-
-    public function editProject(Projects $projects, Request $request){
-        try {
-            $project = $this->designService->editProject($projects, $request);
-            return response()->json([
-                'status' => true,
-                'project' => $project
+                'serviceList' => $serviceList
             ],200);
         }catch (\Exception $e){
             return response()->json([
@@ -68,14 +50,27 @@ class DesignController extends Controller
             ]);
         }
     }
-
-    public function deleteProject(Request $request){
+    public function editServiceList(ServiceList $serviceList, Request $request){
+        try {
+            $serviceList = $this->serviceListService->editServiceList($serviceList, $request);
+            return response()->json([
+                'status' => true,
+                'serviceList' => $serviceList
+            ],200);
+        }catch (\Exception $e){
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    public function deleteServiceList(Request $request){
         try {
             $id = $request->id;
-            $project = $this->designService->deleteProject($id);
+            $serviceList = $this->serviceListService->deleteServiceList($id);
             return response()->json([
                 'status' => true,
-                'project' => $project
+                'serviceList' => $serviceList
             ],200);
         }catch (\Exception $e){
             return response()->json([

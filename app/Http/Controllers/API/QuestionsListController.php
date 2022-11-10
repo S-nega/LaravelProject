@@ -14,20 +14,20 @@ use App\Models\User;
 use App\Services\DesignService;
 use Illuminate\Http\Request;
 
-class DesignController extends Controller
+class QuestionsListController extends Controller
 {
-    public function __construct(DesignService $designService){
-        $this->designService = $designService;
+    public function __construct(QuestionsListService $questionsListService){
+        $this->questionsListService = $questionsListService;
     }
 
 
-    public function all(){
+    public function questionsList(){
         try {
-            $projects = $this->designService->getAll();
+            $questionsList = $this->questionsListService->questionsList();
 
             return response()->json([
                 'status' => true,
-                'projects' => $projects
+                'questionsList' => $questionsList
             ],200);
 
         }catch (\Exception $e){
@@ -38,28 +38,12 @@ class DesignController extends Controller
         }
     }
 
-    public function addProject(AddRequest $request){
+    public function addQuestionsList(Request $request){
         try {
-            $project = $this->designService->addProject($request);
+            $questionsList = $this->questionsListService->addQuestionsList($request);
             return response()->json([
                 'status' => true,
-                'project' => $project
-            ],200);
-//            return redirect()->route('ourProductsP')->with('status', 'Project added!');
-        }catch (\Exception $e){
-            return response()->json([
-                'status' => false,
-                'message' => $e->getMessage()
-            ]);
-        }
-    }
-
-    public function editProject(Projects $projects, Request $request){
-        try {
-            $project = $this->designService->editProject($projects, $request);
-            return response()->json([
-                'status' => true,
-                'project' => $project
+                'questionsList' => $questionsList
             ],200);
         }catch (\Exception $e){
             return response()->json([
@@ -69,13 +53,28 @@ class DesignController extends Controller
         }
     }
 
-    public function deleteProject(Request $request){
+    public function editQuestionsList(QuestionsList $questionsList, Request $request){
+        try {
+            $questionsList = $this->questionsListService->editQuestionsList($questionsList, $request);
+            return response()->json([
+                'status' => true,
+                'questionsList' => $questionsList
+            ],200);
+        }catch (\Exception $e){
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function deleteQuestionsList(Request $request){
         try {
             $id = $request->id;
-            $project = $this->designService->deleteProject($id);
+            $questionsList = $this->questionsListService->deleteQuestionsList($id);
             return response()->json([
                 'status' => true,
-                'project' => $project
+                'questionsList' => $questionsList
             ],200);
         }catch (\Exception $e){
             return response()->json([
