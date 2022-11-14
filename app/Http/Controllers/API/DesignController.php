@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\AddRequest;
+use App\Http\Resources\DesignResource;
 use App\Models\CallBackList;
 use App\Models\Design;
 use App\Models\Projects;
@@ -27,14 +28,14 @@ class DesignController extends Controller
 
             return response()->json([
                 'status' => true,
-                'projects' => $projects
-            ],200);
+                'projects' => DesignResource::collection($projects)
+            ]);
 
         }catch (\Exception $e){
             return response()->json([
                 'status' => false,
                 'message' => $e->getMessage()
-            ]);
+            ], $e->getCode());
         }
     }
 

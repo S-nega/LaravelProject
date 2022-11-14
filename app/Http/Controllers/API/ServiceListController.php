@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\AddRequest;
+use App\Http\Resources\ServiceListResource;
 use App\Models\CallBackList;
 use App\Models\Design;
 use App\Models\Projects;
@@ -12,6 +13,7 @@ use App\Models\QuestionsList;
 use App\Models\ServiceList;
 use App\Models\User;
 use App\Services\DesignService;
+use App\Services\ServiceListService;
 use Illuminate\Http\Request;
 
 class ServiceListController extends Controller
@@ -26,14 +28,14 @@ class ServiceListController extends Controller
 
             return response()->json([
                 'status' => true,
-                'serviceList' => $serviceList
-            ],200);
+                'serviceList' => ServiceListResource::collection($serviceList)
+            ]);
 
         }catch (\Exception $e){
             return response()->json([
                 'status' => false,
                 'message' => $e->getMessage()
-            ]);
+            ], $e->getCode());
         }
     }
     public function addServiceList(Request $request){

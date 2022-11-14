@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\AddRequest;
+use App\Http\Resources\CallBackListResource;
 use App\Models\CallBackList;
 use App\Models\Design;
 use App\Models\Projects;
@@ -11,6 +12,7 @@ use App\Models\Image;
 use App\Models\QuestionsList;
 use App\Models\ServiceList;
 use App\Models\User;
+use App\Services\CallBackListService;
 use App\Services\DesignService;
 use Illuminate\Http\Request;
 
@@ -26,14 +28,14 @@ class CallBackListController extends Controller
 
             return response()->json([
                 'status' => true,
-                'callBackList' => $callBackList
-            ],200);
+                'callBackList' => CallBackListResource::collection($callBackList)
+            ]);
 
         }catch (\Exception $e){
             return response()->json([
                 'status' => false,
                 'message' => $e->getMessage()
-            ]);
+            ], $e->getCode());
         }
     }
     public function addCallBackList(Request $request){

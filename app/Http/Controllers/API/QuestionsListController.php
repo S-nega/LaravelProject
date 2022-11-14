@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\AddRequest;
+use App\Http\Resources\QuestionListResource;
 use App\Models\CallBackList;
 use App\Models\Design;
 use App\Models\Projects;
@@ -12,6 +13,7 @@ use App\Models\QuestionsList;
 use App\Models\ServiceList;
 use App\Models\User;
 use App\Services\DesignService;
+use App\Services\QuestionsListService;
 use Illuminate\Http\Request;
 
 class QuestionsListController extends Controller
@@ -27,14 +29,14 @@ class QuestionsListController extends Controller
 
             return response()->json([
                 'status' => true,
-                'questionsList' => $questionsList
-            ],200);
+                'questionsList' => QuestionListResource::collection($questionsList)
+            ]);
 
         }catch (\Exception $e){
             return response()->json([
                 'status' => false,
                 'message' => $e->getMessage()
-            ]);
+            ], $e->getCode());
         }
     }
 
