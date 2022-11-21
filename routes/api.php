@@ -41,3 +41,9 @@ Route::get('/users',[\App\Http\Controllers\API\UserController::class, 'users']);
 Route::post('/addUsers', [\App\Http\Controllers\API\UserController::class, 'addUsers']);
 Route::post('/editUsers', [\App\Http\Controllers\API\UserController::class, 'editUsers']);
 Route::delete('/deleteUsers', [\App\Http\Controllers\API\UserController::class, 'deleteUsers']);
+
+Route::post('register', [\App\Http\Controllers\API\AuthApiController::class, 'register']);
+Route::post('login', [\App\Http\Controllers\API\AuthApiController::class, 'login']);
+Route::group(['middleware' => 'auth:api'], function (){
+    Route::get('us', [\App\Http\Controllers\API\UserController::class, 'users']);
+});
