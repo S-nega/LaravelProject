@@ -15,15 +15,24 @@ class AuthController extends Controller
 {
     public function login(authorizeRequest $request){
         $credentials = $request->only('email', 'password');
+
 //        $credentials = [
 //            'email' => $request->get('email'),
 //            'password' => $request->get('password')
 //        ];
-
+//        $users = User::where('email', $request->email)->first();
+//        if ($users->status != 'admin') {
+//            return redirect()->route('authorizeP')->with('status', 'You are not admin');
+//        }
+        $users = User::where('email', $request->email)->first();
+        if ($users == null || $users->status != 'admin') {
+            return redirect()->route('authorizeP')->with('status', 'You are not admin');
+        }
         if (Auth::attempt($credentials)){
-            //return view('design')->with('status', 'Authorized success!');
             $designs = Design::with('category')->get();
             return redirect()->route('design-page')->with('status', 'Authorized success!');
+            //return view('design')->with('status', 'Authorized success!');
+
 //            return redirect('/design-page')->with('status','Authorized success!');//->route('/design-page')
         }
         return redirect()->route('authorizeP')->with('status', 'Something is wrong');
